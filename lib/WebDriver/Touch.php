@@ -47,8 +47,8 @@ final class Touch extends AbstractWebDriver
             'down' => array('POST'),
             'up' => array('POST'),
             'move' => array('POST'),
-            'scroll' => array('POST'),
-            'doubleclick' => array('POST'),
+            //'scroll' => array('POST'),
+            //'doubleclick' => array('POST'),
             'longclick' => array('POST'),
             'flick' => array('POST'),
         );

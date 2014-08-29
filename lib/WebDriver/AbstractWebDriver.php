@@ -115,15 +115,21 @@ abstract class AbstractWebDriver
         }
 
         $url = sprintf('%s%s', $this->url, $command);
-
         if ($parameters && (is_int($parameters) || is_string($parameters))) {
             $url .= '/' . $parameters;
         }
 
+
         list($rawResult, $info) = ServiceFactory::getInstance()->getService('service.curl')->execute($requestMethod, $url, $parameters, $extraOptions);
+
 
         $result = json_decode($rawResult, true);
         $value   = null;
+
+        if ( is_null($result)) {
+            throw WebDriverException::factory( 500, 'Ooops! We have a trouble. Appium says: '.$rawResult);
+        }
+
 
         if (is_array($result) && array_key_exists('value', $result)) {
             $value = $result['value'];
@@ -139,7 +145,6 @@ abstract class AbstractWebDriver
         if ((int) $result['status'] !== 0) {
             throw WebDriverException::factory($result['status'], $message);
         }
-
         $sessionId = isset($result['sessionId'])
                    ? $result['sessionId']
                    : (isset($value['webdriver.remote.sessionid'])

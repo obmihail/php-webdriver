@@ -50,12 +50,10 @@ final class WebDriver extends AbstractWebDriver
      *
      * @return \WebDriver\Session
      */
-    public function session($requiredCapabilities = Browser::FIREFOX, $desiredCapabilities = array())
+    public function session($requiredCapabilities = array(), $desiredCapabilities = array())
     {
         // for backwards compatibility when the only required capability was browser name
         if (! is_array($requiredCapabilities)) {
-            $desiredCapabilities[Capability::BROWSER_NAME] = $requiredCapabilities ?: Browser::FIREFOX;
-
             $requiredCapabilities = array();
         }
 

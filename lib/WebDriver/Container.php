@@ -77,7 +77,6 @@ abstract class Container extends AbstractWebDriver
                 $e
             );
         }
-
         $element = $this->webDriverElement($result['value']);
 
         if ($element === null) {

@@ -53,9 +53,9 @@ final class Element extends Container
     {
         return array(
             'click' => array('POST'),
-            'submit' => array('POST'),
+            //'submit' => array('POST'),
             'text' => array('GET'),
-            'value' => array('POST'),
+            'value' => array( 'GET' , 'POST'),
             'name' => array('GET'),
             'clear' => array('POST'),
             'selected' => array('GET'),
@@ -67,6 +67,7 @@ final class Element extends Container
             'location_in_view' => array('GET'),
             'size' => array('GET'),
             'css' => array('GET'),
+            'pageIndex' => array('GET'),
         );
     }
 
@@ -76,11 +77,11 @@ final class Element extends Container
     protected function obsoleteMethods()
     {
         return array(
-            'value' => array('GET'),
-            'selected' => array('POST'),
-            'toggle' => array('POST'),
-            'hover' => array('POST'),
-            'drag' => array('POST'),
+    //        'value' => array('GET'),
+    //        'selected' => array('POST'),
+    //        'toggle' => array('POST'),
+    //        'hover' => array('POST'),
+    //        'drag' => array('POST'),
         );
     }
 
@@ -102,6 +103,11 @@ final class Element extends Container
         parent::__construct($url);
 
         $this->id = $id;
+    }
+
+    public function setValue( $text )
+    {
+        $this->postValue( array( 'value' => array( $text ) ) );
     }
 
     /**

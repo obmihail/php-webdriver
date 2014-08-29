@@ -74,6 +74,7 @@ final class Session extends Container
         return array(
             'window_handle' => array('GET'),
             'window_handles' => array('GET'),
+            'window' => array('GET','POST'),
             'url' => array('GET', 'POST'), // alternate for POST, use open($url)
             'forward' => array('POST'),
             'back' => array('POST'),
@@ -94,12 +95,18 @@ final class Session extends Container
             'buttondown' => 'POST',
             'buttonup' => array('POST'),
             'doubleclick' => array('POST'),
-            'execute_sql' => array('POST'),
+            // 'execute_sql' => array('POST'),
             'location' => array('GET', 'POST'),
-            'browser_connection' => array('GET', 'POST'),
-
+            // 'browser_connection' => array('GET', 'POST'),
             // specific to Java SeleniumServer
             'file' => array('POST'),
+            // specific to Appium
+            'receive_async_response' => array( 'POST'),
+            'open_notifications' => array( 'POST' ),
+            'network_connection' => array( 'GET', 'POST' ),
+            'context'  => array( 'GET', 'POST' ),
+            'contexts'  => array( 'GET' ),
+            'timeouts'  => array( 'POST' )
         );
     }
 
@@ -116,21 +123,18 @@ final class Session extends Container
         );
     }
 
-    /**
-     * Open URL: /session/:sessionId/url (POST)
-     * An alternative to $session->url($url);
-     *
-     * @param string $url
-     *
-     * @return \WebDriver\Session
-     */
-    public function open($url)
+    public function open( $url )
     {
         $this->curl('POST', '/url', array('url' => $url));
-
         return $this;
     }
 
+    public function appium()
+    {
+        return new Appium($this->url . '/appium');
+    }
+
+    
     /**
      * Get browser capabilities: /session/:sessionId (GET)
      *
@@ -434,3 +438,12 @@ final class Session extends Container
         return sprintf('%s/element/%s', $this->url, $elementId);
     }
 }
+
+
+
+/**
+*
+*   APPIUM METHODS
+*
+*/
+
