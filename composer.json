@@ -12,18 +12,13 @@
     "license": "Apache-2.0",
     "authors": [
         {
-            "name": "Justin Bishop",
-            "email": "jubishop@gmail.com",
+            "name": "Obmihail",
+            "email": "obmihail@gmail.com",
             "role": "Developer"
         },
-        {
-            "name": "Anthon Pang",
-            "email": "apang@softwaredevelopment.ca",
-            "role": "Fork Maintainer"
-        }
     ],
     "require": {
-        "php": ">=5.3.2",
+        "php": ">=5.4.0",
         "ext-curl": "*"
     },
     "require-dev": {
