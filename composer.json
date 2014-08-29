@@ -1,9 +1,11 @@
 {
-    "name": "instaclick/php-webdriver",
+    "name": "obmihail/php-webdriver",
     "type": "library",
-    "description": "PHP WebDriver for Selenium 2",
+    "description": "PHP WebDriver for Appium",
     "keywords": [
-        "selenium",
+        "appium",
+        "ios",
+        "android",
         "webdriver",
         "webtest",
         "browser"
